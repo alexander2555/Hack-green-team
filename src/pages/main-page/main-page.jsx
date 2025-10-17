@@ -1,3 +1,7 @@
 export const MainPage = () => {
-  return <div>MainPage</div>;
+  return (
+    <div>
+      <div>MainPage</div>
+    </div>
+  );
 };
