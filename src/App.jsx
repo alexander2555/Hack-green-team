@@ -1,11 +1,24 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { Layout } from "./components/layout/layout";
+import { MainPage } from "./pages/main-page/main-page";
+
 import "./App.css";
 
 export const App = () => {
-  return (
-    <>
-      <div>
-        <h1>Hackathon green team!</h1>
-      </div>
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true, element: <MainPage /> },
+        { path: "Alex", element: <div>Alex</div> },
+        { path: "Aram", element: <div>Aram</div> },
+        { path: "Vit", element: <div>Vit</div> },
+        { path: "Dim", element: <div>Dim</div> },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
