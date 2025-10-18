@@ -1,0 +1,22 @@
+.controlPanelContainer{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin: 10px;
+}
+
+.link{
+  text-decoration: none;
+}
+
+.link :hover {
+  font-weight: 600;
+}
+
+.activeLink button {
+  font-weight: 600
+}
+
+.activeLink {
+  text-decoration: none;
+}
