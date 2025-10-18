@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getMember } from '../../data';
+import { getAgeText } from '../../utils';
 
 import styles from './team-member.module.css';
 
@@ -18,32 +19,48 @@ export const TeamMember = () => {
   const { name, about, age, photo, responsibilities, contacts } = member;
 
   return (
-    <>
-      <h2>Страница участника</h2>
+    <article className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.photoWrapper}>
+          <img src={photo} alt={name} className={styles.photo} />
+        </div>
+        <h2 className={styles.name}>{name}</h2>
+        <p className={styles.age}>{getAgeText(age)}</p>
+      </header>
 
-      <div className={`card ${styles['card-member']}`}>
-        <img src={photo} class='card-img-top' alt={name} />
-        <div className='card-body'>
-          <h3 class='card-title'>{name}</h3>
-          <span>Возраст: {age}</span>
-          <p class='card-text'>О себе: {about}</p>
+      <div className={styles.content}>
+        <section className={styles.section}>
+          <h3 className={styles['section-title']}>О себе</h3>
+          <p className={styles['section-content']}>{about}</p>
+        </section>
 
-          <p class='card-text'>Задачи: {responsibilities}</p>
-          <ul>
-            Контакты:
+        <section className={styles.section}>
+          <h3 className={styles['section-title']}>Обязанности</h3>
+          <p className={styles['section-content']}>{responsibilities}</p>
+        </section>
+
+        <section className={styles.section}>
+          <h3 className={styles['section-title']}>Контакты</h3>
+          <ul className={styles.contacts}>
             {Object.entries(contacts).map(([key, val]) => (
               <li key={key}>
-                {key}: {val}
+                <Link
+                  to={
+                    key === 'email'
+                      ? `mailto:${val}`
+                      : val.replace('@', 'https://t.me/')
+                  }
+                  className={styles['contact-item']}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  {key}
+                </Link>
               </li>
             ))}
           </ul>
-          {/* <Button
-            lable='>'
-            backgroundColor='rgba(81, 38, 161, 1)'
-            onClick={() => nav(`/team-member/${id}`)}
-          /> */}
-        </div>
+        </section>
       </div>
-    </>
+    </article>
   );
 };
