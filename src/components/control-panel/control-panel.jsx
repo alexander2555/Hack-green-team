@@ -35,7 +35,7 @@ export const ControlPanel = () => {
         />
       </NavLink>
 
-      <Link>
+      <Link className={styles.link}>
         <Button
           lable="Назад"
           textcolor="#fff"
