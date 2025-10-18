@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getMember } from '../../data';
 import { getAgeText } from '../../utils';
+import { Badge } from '../../components/badge/badge';
 
 import styles from './team-member.module.css';
 
@@ -16,7 +17,8 @@ export const TeamMember = () => {
 
   if (!member) return <div>Загрузка данных...</div>;
 
-  const { name, about, age, photo, responsibilities, contacts } = member;
+  const { name, about, photo, responsibilities, contacts, badge } = member;
+  const age = 20 + Math.round(Math.random() * 30);
 
   return (
     <article className={styles.container}>
@@ -26,6 +28,15 @@ export const TeamMember = () => {
         </div>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.age}>{getAgeText(age)}</p>
+        {badge ? (
+          <Badge
+            content={badge}
+            textColor='white'
+            className={styles['header-bage']}
+          />
+        ) : (
+          ''
+        )}
       </header>
 
       <div className={styles.content}>
