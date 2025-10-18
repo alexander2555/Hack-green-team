@@ -25,14 +25,15 @@ export const TeamMember = () => {
   };
 
   useEffect(() => {
-    setMember(getMember(id));
+    const member = getMember(id);
+    member.age = 20 + Math.round(Math.random() * 30);
+    setMember(member);
     setFavStatus(getFavorites().includes(id));
   }, [id]);
 
   if (!member) return <div>Загрузка данных...</div>;
 
-  const { name, about, photo, responsibilities, contacts, badge } = member;
-  const age = 20 + Math.round(Math.random() * 30);
+  const { name, about, photo, responsibilities, age, contacts, badge } = member;
 
   return (
     <article className={styles.container}>

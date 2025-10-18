@@ -10,7 +10,7 @@ export const removeFromFavorites = (id) => {
 
   if (removeIndex < 0) return;
 
-  const newFavorites = favorites.splice(removeIndex, 1);
+  favorites.splice(removeIndex, 1);
 
-  localStorage.setItem(LOCALSTORAGE_ITEM_NAME, JSON.stringify(newFavorites));
+  localStorage.setItem(LOCALSTORAGE_ITEM_NAME, JSON.stringify(favorites));
 };
