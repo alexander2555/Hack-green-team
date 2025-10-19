@@ -24,19 +24,18 @@
  * @returns {JSX.Element} JSX-элемент карточки.
  */
 import { Link } from "react-router-dom";
-import { Button } from "../../elements/button/button";
 import { Badge } from "../badge/badge";
-import { useFavStatus } from "../../hooks/use-fav-status";
-import { HeartEmpty, HeartFull } from "../../icons";
+// import { useFavStatus } from "../../hooks/use-fav-status";
+// import { HeartEmpty, HeartFull } from "../../icons";
 import { getAgeText } from "../../utils";
 
 import styles from "./card.module.css";
 
 export const Card = ({ className, item }) => {
-  const { id, name, about, photo, responsibilities, age, contacts, badge } =
+  const { /*id*/ name, about, photo, responsibilities, age, contacts, badge } =
     item;
 
-  const { favStatus, changeFavStatus } = useFavStatus(id);
+  // const { favStatus, changeFavStatus } = useFavStatus(id);
 
   return (
     <div className={styles.card + " " + className}>
@@ -90,15 +89,6 @@ export const Card = ({ className, item }) => {
             ))}
           </ul>
         </div>
-
-        <Button
-          className={styles["card-fav-btn"]}
-          backgroundColor="rgba(81, 38, 161, 1)"
-          borderRadius="50em"
-          onClick={changeFavStatus}
-          title={favStatus ? "Добавить в избранное" : "Удалить из избранного"}
-          lable={favStatus ? <HeartFull /> : <HeartEmpty />}
-        />
       </div>
     </div>
   );

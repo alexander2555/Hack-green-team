@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { getFavorites } from "../../utils";
-import { Sample } from "../../components/sample/sample";
-import { getMember } from "../../data";
-// import { data } from "../../data";
+import { Card } from "../../components/card/card";
 import { Button } from "../../elements/button/button";
 import { removeFromFavorites } from "../../utils";
+// import { getMember } from "../../data";
+import { data } from "../../data";
+
+import styles from "./favorites.module.css";
+import { useEffect } from "react";
 
 export const Favorites = () => {
   const [favorites, setFavorites] = useState(getFavorites());
+  const [fm, setFm] = useState([]);
 
   const handleRemove = (id) => {
     removeFromFavorites(id);
@@ -15,31 +19,25 @@ export const Favorites = () => {
     setFavorites(updatedFavorites);
   };
 
+  useEffect(() => {
+    const newFm = data.members.filter((item) => favorites.includes(item.id));
+
+    setFm(newFm);
+  }, [favorites]);
+
   return (
     <div>
-      <div>LocalStorage</div>
-      <div>
-        {favorites.map((item) => {
-          const member = getMember(`${item}`);
-          return (
-            <>
-              <div key={item}>
-                <Sample
-                  name={member.name}
-                  age={member.age}
-                  contacts={member.contacts}
-                />
-                <Button
-                  lable="Удалить"
-                  backgroundColor="red"
-                  onClick={() => handleRemove(item)}
-                />
-              </div>
-
-              <br />
-            </>
-          );
-        })}
+      <div className={styles.mainContainer}>
+        {fm.map((member) => (
+          <div key={member.id}>
+            <Card item={member} />
+            <Button
+              lable="Удалить"
+              backgroundColor="red"
+              onClick={() => handleRemove(member.id)}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
