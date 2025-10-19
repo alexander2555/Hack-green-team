@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMember } from "../../data";
-import {
-  getAgeText,
-  getFavorites,
-  addToFavorites,
-  removeFromFavorites,
-} from "../../utils";
+import { useFavStatus } from "../../hooks/use-fav-status";
+import { getAgeText } from "../../utils";
 import { Badge } from "../../components/badge/badge";
 import { Button } from "../../elements/button/button";
 import { HeartEmpty, HeartFull } from "../../icons";
@@ -14,17 +10,7 @@ import { ERROR } from "../../constants";
 import { Error } from "../../components/error/error";
 
 import styles from "./team-member.module.css";
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getMember } from '../../data';
-import { Badge } from '../../components/badge/badge';
-import { Button } from '../../elements/button/button';
-import { useFavStatus } from '../../hooks/use-fav-status';
-import { HeartEmpty, HeartFull } from '../../icons';
-import { getAgeText } from '../../utils';
-
-import styles from './team-member.module.css';
-import { Card } from '../../components/card/Card';
+import { Card } from "../../components/card/Card";
 
 export const TeamMember = () => {
   const id = useParams().id;
