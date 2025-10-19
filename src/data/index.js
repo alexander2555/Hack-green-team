@@ -56,7 +56,7 @@ const members = [
     },
     responsibilities: "Общее руководство",
     age: 45,
-    badge: "Тимлид",
+    badge: "Team Leader",
   },
 ];
 
