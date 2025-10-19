@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../elements/button/button";
 
-import styles from "./Progress.module.css";
+import styles from "./progress.module.css";
 
 export const ProgressBar = ({ progress }) => {
   const [type, setType] = useState(1);
