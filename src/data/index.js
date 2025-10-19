@@ -1,7 +1,7 @@
 const team = {
   name: 'Hackathon Green Team',
   description: 'Team description',
-}
+};
 
 const members = [
   {
@@ -51,10 +51,13 @@ const members = [
     },
     responsibilities: 'responsibilities 4',
     age: 42,
+    badge: 'Тимлид',
   },
-]
+];
 
 export const data = {
   team,
   members,
-}
+};
+
+export * from './helpers/get-member';
