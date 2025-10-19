@@ -65,7 +65,9 @@ export const Card = ({
           )}
         </div>
       </Link>
-
+      <div className={styles["favorite-icon"]}>
+        {favStatus ? <HeartFull favorites /> : <HeartEmpty />}
+      </div>
       <div className={styles["card-body"]}>
         <h2 className={styles.name}>{name}</h2>
 
@@ -99,9 +101,6 @@ export const Card = ({
               </li>
             ))}
           </ul>
-        </div>
-        <div className={styles["favorite-icon"]}>
-          {favStatus ? <HeartFull favorites /> : <HeartEmpty />}
         </div>
         {cusstomButton && (
           <Button

@@ -142,6 +142,8 @@
 }
 
 .favorite-icon {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  z-index: 20;
+  margin-top: -40px;
+  margin-left: 20px;
 }
