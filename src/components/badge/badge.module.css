@@ -6,4 +6,6 @@
   padding: 0.5rem 1rem;
   color: var(--text-color, white);
   background-color: var(--bg-color, blue);
+  margin-top: -25px;
+  margin-right: -20px;
 }

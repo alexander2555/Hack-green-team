@@ -1,4 +1,3 @@
-import { Link, NavLink } from "react-router-dom";
 import { Card } from "../../components/card/card";
 import { data } from "../../data";
 
@@ -11,7 +10,12 @@ export const MainPage = () => {
     <div>
       <div className={styles.mainContainer}>
         {members.map((member) => (
-          <Card key={member.id} item={member} path={"team-member/"} />
+          <Card
+            key={member.id}
+            item={member}
+            path={"team-member/"}
+            className={styles.mainPage}
+          />
         ))}
       </div>
     </div>

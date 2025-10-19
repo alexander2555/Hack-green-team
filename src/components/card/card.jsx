@@ -1,28 +1,3 @@
-/**
- * Карточка профиля пользователя.
- *
- * @param {string} [props.className] - Дополнительный CSS-класс для корневого элемента.
- * @param {Object} props.item - Данные для отображения в карточке.
- * @param {string} props.item.id - id для избранного.
- * @param {string} props.item.name - Имя или заголовок карточки.
- * @param {string} props.item.about - Краткая информация "О себе".
- * @param {string} props.item.photo - URL фотографии (используется как src у <img>).
- * @param {string} props.item.responsibilities - Описание обязанностей.
- * @param {number} props.item.age - Числовое значение возраста; форматируется с помощью getAgeText.
- * @param {Object.<string,string>} props.item.contacts - Объект контактов вида.
- * @param {string} [props.item.badge] - Текст бейджа; если указан, отображается компонент Badge.
- *
- * Поведение и заметки по рендерингу:
- * - Фото выводится с alt равным name.
- * - Возраст отображается через вызов getAgeText(age).
- * - При наличии badge рендерится <Badge content={badge} textColor="white" className={...} />.
- * - Контакты рендерятся как список ссылок:
- *   - для ключа "email" формируется ссылка mailto:{value};
- *   - для прочих контактов значение с '@' преобразуется в ссылку вида "https://t.me/{rest}".
- * - Контактные ссылки открываются в новой вкладке (target="_blank") и получают rel="noopener noreferrer".
- *
- * @returns {JSX.Element} JSX-элемент карточки.
- */
 import { Link } from "react-router-dom";
 import { Badge } from "../badge/badge";
 import { Button } from "../../elements/button/button";
@@ -51,7 +26,13 @@ export const Card = ({
       <Link to={`${path}${id}`}>
         <div className={styles["card-header"]}>
           <div className={styles["photo-container"]}>
-            <img src={photo} alt={name} className={styles.photo} />
+            <img
+              src={photo}
+              alt={name}
+              className={styles.photo}
+              width={100}
+              height={150}
+            />
           </div>
           <div className={styles.age}>{getAgeText(age)}</div>
           {badge ? (
