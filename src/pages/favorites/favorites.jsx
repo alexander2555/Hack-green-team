@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const Favorites = () => {
   const [data, setData] = useState([{ name: "Хакатон", value: 1 }]);
-  const [name, setName] = useState("Было");
+  const [name, setName] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("myData", JSON.stringify(data));
@@ -14,11 +14,10 @@ export const Favorites = () => {
   };
 
   const handleGetData = () => {
-    const getData = localStorage.getItem("myData");
-    const newData = JSON.parse(getData);
-    console.log(newData[0].name);
-    const newName = newData[0].name;
-    setName(newName);
+    const getData = localStorage.getItem("favorites");
+    const favorites = JSON.parse(getData);
+    console.log(favorites);
+    setName(favorites);
   };
 
   return (
