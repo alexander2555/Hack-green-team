@@ -1,0 +1,44 @@
+.breadcrumbs {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-top: -70px;
+  margin-bottom: 30px;
+  font-size: 22px;
+
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumbItem {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #dfe4eb;
+}
+
+.separator {
+  margin: 0 8px;
+  color: #fff;
+}
+
+.current {
+  font-weight: 600;
+  color: #47405f;
+}

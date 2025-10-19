@@ -12,6 +12,7 @@ const members = [
   {
     id: "1",
     name: "Александр",
+    name_1: "Александра",
     photo: Odysseus,
     about: "Профессионализм",
     contacts: {
@@ -25,6 +26,7 @@ const members = [
   {
     id: "2",
     name: "Арам",
+    name_1: "Арама",
     photo: Man,
     about: "Неизвестно",
     contacts: {
@@ -38,6 +40,7 @@ const members = [
   {
     id: "3",
     name: "Виталий",
+    name_1: "Виталия",
     photo: Mercury,
     about: "Непостоянство",
     contacts: {
@@ -51,6 +54,7 @@ const members = [
   {
     id: "4",
     name: "Дмитрий",
+    name_1: "Дмитрия",
     photo: Diomedes,
     about: "Упорство",
     contacts: {
