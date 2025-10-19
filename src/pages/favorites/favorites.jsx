@@ -1,38 +1,46 @@
-import { useEffect } from "react";
 import { useState } from "react";
+import { getFavorites } from "../../utils";
+import { Sample } from "../../components/sample/sample";
+import { getMember } from "../../data";
+// import { data } from "../../data";
+import { Button } from "../../elements/button/button";
+import { removeFromFavorites } from "../../utils";
 
 export const Favorites = () => {
-  const [data, setData] = useState([{ name: "Хакатон", value: 1 }]);
-  const [name, setName] = useState([]);
+  const [favorites, setFavorites] = useState(getFavorites());
 
-  useEffect(() => {
-    localStorage.setItem("myData", JSON.stringify(data));
-  }, [data]);
-
-  const handleClick = () => {
-    setData([{ name: "Update React", value: 2 }]);
-  };
-
-  const handleGetData = () => {
-    const getData = localStorage.getItem("favorites");
-    const favorites = JSON.parse(getData);
-    console.log(favorites);
-    setName(favorites);
+  const handleRemove = (id) => {
+    removeFromFavorites(id);
+    const updatedFavorites = getFavorites();
+    setFavorites(updatedFavorites);
   };
 
   return (
     <div>
       <div>LocalStorage</div>
       <div>
-        {data.map(({ name, value }) => (
-          <div key={name}>
-            name: {name}, value: {value}
-          </div>
-        ))}
+        {favorites.map((item) => {
+          const member = getMember(`${item}`);
+          return (
+            <>
+              <div key={item}>
+                <Sample
+                  name={member.name}
+                  age={member.age}
+                  contacts={member.contacts}
+                />
+                <Button
+                  lable="Удалить"
+                  backgroundColor="red"
+                  onClick={() => handleRemove(item)}
+                />
+              </div>
+
+              <br />
+            </>
+          );
+        })}
       </div>
-      <button onClick={handleClick}>Обновить данные</button>
-      <button onClick={handleGetData}>Получить данные</button>
-      <div>Name: {name}</div>
     </div>
   );
 };
