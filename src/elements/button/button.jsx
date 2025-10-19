@@ -1,11 +1,13 @@
-import styles from "./button.module.css";
+import styles from './button.module.css';
 
 export const Button = ({
-  lable = "Button",
-  textcolor = "white",
-  backgroundColor = "yellow",
+  className,
+  lable = 'Button',
+  textcolor = 'white',
+  backgroundColor = 'yellow',
   onClick,
-  borderRadius = "10px",
+  borderRadius = '10px',
+  ...props
 }) => {
   const customButtonStyle = {
     color: textcolor,
@@ -16,10 +18,11 @@ export const Button = ({
   return (
     <div>
       <button
-        type="button"
-        className={styles.customButton}
+        type='button'
+        className={styles.customButton + (className ? ' ' + className : '')}
         onClick={onClick}
         style={customButtonStyle}
+        {...props}
       >
         {lable}
       </button>

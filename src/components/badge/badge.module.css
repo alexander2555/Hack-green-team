@@ -1,0 +1,11 @@
+.badge {
+  width: max-content;
+  max-width: 200px;
+  border-radius: 50em;
+  background-color: rgb(114, 140, 80);
+  padding: 0.5rem 1rem;
+  color: var(--text-color, white);
+  background-color: var(--bg-color, blue);
+  margin-top: -25px;
+  margin-right: -20px;
+}
