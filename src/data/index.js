@@ -51,6 +51,7 @@ const members = [
     },
     responsibilities: 'responsibilities 4',
     age: 42,
+    badge: 'Тимлид',
   },
 ];
 

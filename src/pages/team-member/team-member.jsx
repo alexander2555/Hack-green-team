@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getMember } from '../../data';
-import { getAgeText } from '../../utils';
+import {
+  getAgeText,
+  getFavorites,
+  addToFavorites,
+  removeFromFavorites,
+} from '../../utils';
+import { Badge } from '../../components/badge/badge';
+import { Button } from '../../elements/button/button';
+import { HeartEmpty, HeartFull } from '../../icons';
 
 import styles from './team-member.module.css';
 
@@ -9,14 +17,23 @@ export const TeamMember = () => {
   const id = useParams().id;
 
   const [member, setMember] = useState(null);
+  const [favStatus, setFavStatus] = useState(false);
+
+  const changeFavStatus = () => {
+    favStatus ? removeFromFavorites(id) : addToFavorites(id);
+    setFavStatus(!favStatus);
+  };
 
   useEffect(() => {
-    setMember(getMember(id));
+    const member = getMember(id);
+    member.age = 20 + Math.round(Math.random() * 30);
+    setMember(member);
+    setFavStatus(getFavorites().includes(id));
   }, [id]);
 
   if (!member) return <div>Загрузка данных...</div>;
 
-  const { name, about, age, photo, responsibilities, contacts } = member;
+  const { name, about, photo, responsibilities, age, contacts, badge } = member;
 
   return (
     <article className={styles.container}>
@@ -26,6 +43,15 @@ export const TeamMember = () => {
         </div>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.age}>{getAgeText(age)}</p>
+        {badge ? (
+          <Badge
+            content={badge}
+            textColor='white'
+            className={styles['header-bage']}
+          />
+        ) : (
+          ''
+        )}
       </header>
 
       <div className={styles.content}>
@@ -60,6 +86,14 @@ export const TeamMember = () => {
             ))}
           </ul>
         </section>
+
+        <Button
+          backgroundColor='rgba(81, 38, 161, 1)'
+          borderRadius='50em'
+          onClick={changeFavStatus}
+          title={favStatus ? 'Добавить в избранное' : 'Удалить из избранного'}
+          lable={favStatus ? <HeartFull /> : <HeartEmpty />}
+        />
       </div>
     </article>
   );
