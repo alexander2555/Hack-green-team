@@ -23,14 +23,14 @@
  *
  * @returns {JSX.Element} JSX-элемент карточки.
  */
-import { Link } from 'react-router-dom';
-import { Button } from '../../elements/button/button';
-import { Badge } from '../badge/badge';
-import { useFavStatus } from '../../hooks/use-fav-status';
-import { HeartEmpty, HeartFull } from '../../icons';
-import { getAgeText } from '../../utils';
+import { Link } from "react-router-dom";
+import { Button } from "../../elements/button/button";
+import { Badge } from "../badge/badge";
+import { useFavStatus } from "../../hooks/use-fav-status";
+import { HeartEmpty, HeartFull } from "../../icons";
+import { getAgeText } from "../../utils";
 
-import styles from './card.module.css';
+import styles from "./card.module.css";
 
 export const Card = ({ className, item }) => {
   const { id, name, about, photo, responsibilities, age, contacts, badge } =
@@ -39,50 +39,50 @@ export const Card = ({ className, item }) => {
   const { favStatus, changeFavStatus } = useFavStatus(id);
 
   return (
-    <div className={styles.card + ' ' + className}>
-      <div className={styles['card-header']}>
-        <div className={styles['photo-container']}>
+    <div className={styles.card + " " + className}>
+      <div className={styles["card-header"]}>
+        <div className={styles["photo-container"]}>
           <img src={photo} alt={name} className={styles.photo} />
         </div>
         <div className={styles.age}>{getAgeText(age)}</div>
         {badge ? (
           <Badge
             content={badge}
-            textColor='white'
-            className={styles['card-header-bage']}
+            textColor="white"
+            className={styles["card-header-bage"]}
           />
         ) : (
-          ''
+          ""
         )}
       </div>
 
-      <div className={styles['card-body']}>
+      <div className={styles["card-body"]}>
         <h2 className={styles.name}>{name}</h2>
 
-        <div className={styles['info-section']}>
+        <div className={styles["info-section"]}>
           <div className={styles.label}>О себе</div>
           <p className={styles.text}>{about}</p>
         </div>
 
-        <div className={styles['info-section']}>
+        <div className={styles["info-section"]}>
           <div className={styles.label}>Обязанности</div>
           <p className={styles.text}>{responsibilities}</p>
         </div>
 
-        <div className={styles['info-section']}>
+        <div className={styles["info-section"]}>
           <div className={styles.label}>Контакты</div>
           <ul className={styles.contacts}>
             {Object.entries(contacts).map(([key, val]) => (
               <li key={key}>
                 <Link
                   to={
-                    key === 'email'
+                    key === "email"
                       ? `mailto:${val}`
-                      : val.replace('@', 'https://t.me/')
+                      : val.replace("@", "https://t.me/")
                   }
-                  className={styles['contact-item']}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  className={styles["contact-item"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {key}
                 </Link>
@@ -92,11 +92,11 @@ export const Card = ({ className, item }) => {
         </div>
 
         <Button
-          className={styles['card-fav-btn']}
-          backgroundColor='rgba(81, 38, 161, 1)'
-          borderRadius='50em'
+          className={styles["card-fav-btn"]}
+          backgroundColor="rgba(81, 38, 161, 1)"
+          borderRadius="50em"
           onClick={changeFavStatus}
-          title={favStatus ? 'Добавить в избранное' : 'Удалить из избранного'}
+          title={favStatus ? "Добавить в избранное" : "Удалить из избранного"}
           lable={favStatus ? <HeartFull /> : <HeartEmpty />}
         />
       </div>
