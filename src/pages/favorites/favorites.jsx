@@ -30,8 +30,8 @@ export const Favorites = () => {
             <Card
               item={member}
               cusstomButton={true}
-              lable="Удалить"
-              backgroundColor="red"
+              lable="Исключить"
+              backgroundColor="#b66363ff"
               onClick={() => handleRemove(member.id)}
               path={"/team-member/"}
             />
