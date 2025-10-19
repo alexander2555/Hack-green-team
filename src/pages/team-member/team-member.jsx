@@ -10,7 +10,7 @@ import { ERROR } from "../../constants";
 import { Error } from "../../components/error/error";
 
 import styles from "./team-member.module.css";
-import { Card } from "../../components/card/Card";
+import { Card } from "../../components/card/card";
 
 export const TeamMember = () => {
   const id = useParams().id;

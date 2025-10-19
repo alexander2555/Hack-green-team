@@ -140,3 +140,10 @@
 .card-fav-btn {
   margin: auto;
 }
+
+.favorite-icon {
+  position: absolute;
+  z-index: 20;
+  margin-top: -40px;
+  margin-left: 20px;
+}
