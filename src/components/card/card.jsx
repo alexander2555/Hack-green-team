@@ -25,35 +25,46 @@
  */
 import { Link } from "react-router-dom";
 import { Badge } from "../badge/badge";
-// import { useFavStatus } from "../../hooks/use-fav-status";
-// import { HeartEmpty, HeartFull } from "../../icons";
+import { Button } from "../../elements/button/button";
+import { useFavStatus } from "../../hooks/use-fav-status";
+import { HeartEmpty, HeartFull } from "../../icons";
 import { getAgeText } from "../../utils";
 
 import styles from "./card.module.css";
 
-export const Card = ({ className, item }) => {
-  const { /*id*/ name, about, photo, responsibilities, age, contacts, badge } =
+export const Card = ({
+  className,
+  item,
+  cusstomButton,
+  onClick,
+  lable,
+  backgroundColor,
+  path,
+}) => {
+  const { id, name, about, photo, responsibilities, age, contacts, badge } =
     item;
 
-  // const { favStatus, changeFavStatus } = useFavStatus(id);
+  const { favStatus } = useFavStatus(id);
 
   return (
     <div className={styles.card + " " + className}>
-      <div className={styles["card-header"]}>
-        <div className={styles["photo-container"]}>
-          <img src={photo} alt={name} className={styles.photo} />
+      <Link to={`${path}${id}`}>
+        <div className={styles["card-header"]}>
+          <div className={styles["photo-container"]}>
+            <img src={photo} alt={name} className={styles.photo} />
+          </div>
+          <div className={styles.age}>{getAgeText(age)}</div>
+          {badge ? (
+            <Badge
+              content={badge}
+              textColor="white"
+              className={styles["card-header-bage"]}
+            />
+          ) : (
+            ""
+          )}
         </div>
-        <div className={styles.age}>{getAgeText(age)}</div>
-        {badge ? (
-          <Badge
-            content={badge}
-            textColor="white"
-            className={styles["card-header-bage"]}
-          />
-        ) : (
-          ""
-        )}
-      </div>
+      </Link>
 
       <div className={styles["card-body"]}>
         <h2 className={styles.name}>{name}</h2>
@@ -89,6 +100,16 @@ export const Card = ({ className, item }) => {
             ))}
           </ul>
         </div>
+        <div className={styles["favorite-icon"]}>
+          {favStatus ? <HeartFull favorites /> : <HeartEmpty />}
+        </div>
+        {cusstomButton && (
+          <Button
+            onClick={onClick}
+            lable={lable}
+            backgroundColor={backgroundColor}
+          />
+        )}
       </div>
     </div>
   );

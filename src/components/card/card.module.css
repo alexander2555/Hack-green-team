@@ -140,3 +140,8 @@
 .card-fav-btn {
   margin: auto;
 }
+
+.favorite-icon {
+  display: flex;
+  justify-content: center;
+}

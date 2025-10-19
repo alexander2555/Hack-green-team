@@ -11,9 +11,7 @@ export const MainPage = () => {
     <div>
       <div className={styles.mainContainer}>
         {members.map((member) => (
-          <Link to={`team-member/${member.id}`}>
-            <Card key={member.id} item={member} />
-          </Link>
+          <Card key={member.id} item={member} path={"team-member/"} />
         ))}
       </div>
     </div>

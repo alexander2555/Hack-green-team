@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { getFavorites } from "../../utils";
 import { Card } from "../../components/card/card";
-import { Button } from "../../elements/button/button";
 import { removeFromFavorites } from "../../utils";
-// import { getMember } from "../../data";
 import { data } from "../../data";
 
 import styles from "./favorites.module.css";
@@ -21,7 +19,6 @@ export const Favorites = () => {
 
   useEffect(() => {
     const newFm = data.members.filter((item) => favorites.includes(item.id));
-
     setFm(newFm);
   }, [favorites]);
 
@@ -30,11 +27,13 @@ export const Favorites = () => {
       <div className={styles.mainContainer}>
         {fm.map((member) => (
           <div key={member.id}>
-            <Card item={member} />
-            <Button
+            <Card
+              item={member}
+              cusstomButton={true}
               lable="Удалить"
               backgroundColor="red"
               onClick={() => handleRemove(member.id)}
+              path={"/team-member/"}
             />
           </div>
         ))}
