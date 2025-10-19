@@ -8,9 +8,9 @@ import { Button } from "../../elements/button/button";
 import { HeartEmpty, HeartFull } from "../../icons";
 import { ERROR } from "../../constants";
 import { Error } from "../../components/error/error";
+import { ProgressBar } from "../../components/progress/progress";
 
 import styles from "./team-member.module.css";
-import { Card } from "../../components/card/card";
 
 export const TeamMember = () => {
   const id = useParams().id;
@@ -21,13 +21,21 @@ export const TeamMember = () => {
 
   useEffect(() => {
     const member = getMember(id) || null;
-    // member.age = 20 + Math.round(Math.random() * 30);
     setMember(member);
   }, [id]);
 
   if (!member) return <Error error={ERROR.MEMBER_NOT_EXIST} />;
 
-  const { name, about, photo, responsibilities, age, contacts, badge } = member;
+  const {
+    name,
+    about,
+    photo,
+    responsibilities,
+    age,
+    contacts,
+    badge,
+    involvement,
+  } = member;
 
   return (
     <article className={styles.container}>
@@ -58,6 +66,9 @@ export const TeamMember = () => {
           <h3 className={styles["section-title"]}>Обязанности</h3>
           <p className={styles["section-content"]}>{responsibilities}</p>
         </section>
+
+        <h3 className={styles["section-title"]}>Участие</h3>
+        <ProgressBar progress={involvement} />
 
         <section className={styles.section}>
           <h3 className={styles["section-title"]}>Контакты</h3>
