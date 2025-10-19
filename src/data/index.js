@@ -20,6 +20,7 @@ const members = [
     },
     responsibilities: "Главный разработчик",
     age: 42,
+    involvement: 100,
   },
   {
     id: "2",
@@ -31,6 +32,7 @@ const members = [
       telegram: "@Am17153",
     },
     responsibilities: "Нет",
+    involvement: 2,
     age: 22,
   },
   {
@@ -43,6 +45,7 @@ const members = [
       telegram: "@vs_Hash",
     },
     responsibilities: "Нет",
+    involvement: 10,
     age: 22,
   },
   {
@@ -56,6 +59,7 @@ const members = [
     },
     responsibilities: "Общее руководство",
     age: 45,
+    involvement: 100,
     badge: "Team Leader",
   },
 ];
