@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getMember } from '../../data';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getMember } from "../../data";
 import {
   getAgeText,
   getFavorites,
   addToFavorites,
   removeFromFavorites,
-} from '../../utils';
-import { Badge } from '../../components/badge/badge';
-import { Button } from '../../elements/button/button';
-import { HeartEmpty, HeartFull } from '../../icons';
+} from "../../utils";
+import { Badge } from "../../components/badge/badge";
+import { Button } from "../../elements/button/button";
+import { HeartEmpty, HeartFull } from "../../icons";
+import { ERROR } from "../../constants";
+import { Error } from "../../components/error/error";
 
-import styles from './team-member.module.css';
+import styles from "./team-member.module.css";
 
 export const TeamMember = () => {
   const id = useParams().id;
@@ -25,13 +27,13 @@ export const TeamMember = () => {
   };
 
   useEffect(() => {
-    const member = getMember(id);
-    member.age = 20 + Math.round(Math.random() * 30);
+    const member = getMember(id) || null;
+    // member.age = 20 + Math.round(Math.random() * 30);
     setMember(member);
     setFavStatus(getFavorites().includes(id));
   }, [id]);
 
-  if (!member) return <div>Загрузка данных...</div>;
+  if (!member) return <Error error={ERROR.MEMBER_NOT_EXIST} />;
 
   const { name, about, photo, responsibilities, age, contacts, badge } = member;
 
@@ -46,39 +48,39 @@ export const TeamMember = () => {
         {badge ? (
           <Badge
             content={badge}
-            textColor='white'
-            className={styles['header-bage']}
+            textColor="white"
+            className={styles["header-bage"]}
           />
         ) : (
-          ''
+          ""
         )}
       </header>
 
       <div className={styles.content}>
         <section className={styles.section}>
-          <h3 className={styles['section-title']}>О себе</h3>
-          <p className={styles['section-content']}>{about}</p>
+          <h3 className={styles["section-title"]}>О себе</h3>
+          <p className={styles["section-content"]}>{about}</p>
         </section>
 
         <section className={styles.section}>
-          <h3 className={styles['section-title']}>Обязанности</h3>
-          <p className={styles['section-content']}>{responsibilities}</p>
+          <h3 className={styles["section-title"]}>Обязанности</h3>
+          <p className={styles["section-content"]}>{responsibilities}</p>
         </section>
 
         <section className={styles.section}>
-          <h3 className={styles['section-title']}>Контакты</h3>
+          <h3 className={styles["section-title"]}>Контакты</h3>
           <ul className={styles.contacts}>
             {Object.entries(contacts).map(([key, val]) => (
               <li key={key}>
                 <Link
                   to={
-                    key === 'email'
+                    key === "email"
                       ? `mailto:${val}`
-                      : val.replace('@', 'https://t.me/')
+                      : val.replace("@", "https://t.me/")
                   }
-                  className={styles['contact-item']}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  className={styles["contact-item"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {key}
                 </Link>
@@ -88,10 +90,10 @@ export const TeamMember = () => {
         </section>
 
         <Button
-          backgroundColor='rgba(81, 38, 161, 1)'
-          borderRadius='50em'
+          backgroundColor="rgba(81, 38, 161, 1)"
+          borderRadius="50em"
           onClick={changeFavStatus}
-          title={favStatus ? 'Добавить в избранное' : 'Удалить из избранного'}
+          title={favStatus ? "Добавить в избранное" : "Удалить из избранного"}
           lable={favStatus ? <HeartFull /> : <HeartEmpty />}
         />
       </div>
