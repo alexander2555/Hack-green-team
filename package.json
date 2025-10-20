@@ -2,7 +2,7 @@
   "name": "hack-green-team",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Dimenger.github.io/Hack-green-team/",
+  "homepage": "https://alexander2555.github.io/Hack-green-team/",
   "type": "module",
   "scripts": {
     "dev": "vite",
